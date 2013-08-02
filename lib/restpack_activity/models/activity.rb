@@ -17,7 +17,11 @@ class Activity
   end
 
   def self.list(params = {})
-    response = RestPack::Services::Activity::List.run(params)
+    response = RestPack::Services::Activity::List.run(params, { application_id: 1})
+
+    Page.new(response, :activities) do |activity|
+      Activity.new(activity)
+    end
   end
 
   def tags_csv=(csv)
