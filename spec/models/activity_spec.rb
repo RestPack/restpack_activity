@@ -1,5 +1,18 @@
 require_relative '../spec_helper'
 
 describe Activity do
-  pending 'specs!'
+  describe ".service proxy" do
+    before { @original = RestPack::Activity.config.service_proxy_type }
+    after { RestPack::Activity.config.service_proxy_type = @original }
+
+    it "resolves :local proxy" do
+      RestPack::Activity.config.service_proxy_type = :local
+      Activity.service.should == RestPack::Activity::Proxies::Local
+    end
+
+    it "resolves :api proxy" do
+      RestPack::Activity.config.service_proxy_type = :api
+      Activity.service.should == RestPack::Activity::Proxies::Api
+    end
+  end
 end

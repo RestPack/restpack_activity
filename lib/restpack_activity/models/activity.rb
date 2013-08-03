@@ -11,13 +11,13 @@ class Activity
     super(params)
   end
 
-  def self.get(id, application_id=1)
-    response = RestPack::Services::Activity::Get.run({ id: id, application_id: application_id })
+  def self.get(id)
+    response = service.get(id)
     Activity.new(response.result)
   end
 
   def self.list(params = {})
-    response = RestPack::Services::Activity::List.run(params, { application_id: 1})
+    response = service.list(params)
 
     Page.new(response, :activities) do |activity|
       Activity.new(activity)
@@ -77,6 +77,11 @@ class Activity
     @data = params[:data] if params[:data]
     self.tags_csv = params[:tags_csv] if params[:tags_csv]
     self.access_csv = params[:access_csv] if params[:access_csv]
+  end
+
+  def self.service
+    klass = "RestPack::Activity::Proxies::#{RestPack::Activity.config.service_proxy_type.capitalize}"
+    klass.classify.constantize
   end
 
   private

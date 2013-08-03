@@ -3,7 +3,7 @@ module RestPack::Activity
     attr_accessor :service_proxy_type
 
     def initialize
-      @service_proxy_type = :db
+      @service_proxy_type = :local
     end
   end
 end
