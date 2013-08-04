@@ -3,7 +3,7 @@ class Activity
 
   attr_accessor :id, :application_id, :user_id, :title, :content, :tags,
                 :latitude, :longitude, :access, :data, :href, :created_at, :updated_at
-  validates_presence_of :application_id, :user_id, :content
+  validates_presence_of :user_id, :content
 
   def initialize(params={})
     @tags = []
@@ -42,8 +42,7 @@ class Activity
 
   def save
     if valid?
-      service = new? ? RestPack::Services::Activity::Create : RestPack::Services::Activity::Update
-      response = service.run(attributes)
+      response = new? ? service.create(attributes) : service.update(attributes)
 
       if response.success?
         #TODO: GJ: update model attributes?
@@ -82,6 +81,10 @@ class Activity
   def self.service
     klass = "RestPack::Activity::Proxies::#{RestPack::Activity.config.service_proxy_type.capitalize}"
     klass.classify.constantize
+  end
+
+  def service
+    self.class.service
   end
 
   private
