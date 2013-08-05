@@ -48,8 +48,10 @@ class Activity
         #TODO: GJ: update model attributes?
         return true
       else
-        response.errors.each do |error|
-          errors.add(error.key, error.message)
+        response.errors.each do |key, messages|
+          messages.each do |message|
+            errors.add(key, message)
+          end
         end
 
         return false
@@ -79,7 +81,7 @@ class Activity
   end
 
   def self.service
-    klass = "RestPack::Activity::Proxies::#{RestPack::Activity.config.service_proxy_type.capitalize}"
+    klass = "RestPack::Activity::Proxies::#{RestPack::Activity.config.service_type.capitalize}"
     klass.classify.constantize
   end
 

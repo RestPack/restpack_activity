@@ -1,10 +1,21 @@
 module RestPack::Activity::Proxies
   class Local
     def self.get(id)
-      RestPack::Services::Activity::Get.run({
+      response = RestPack::Services::Activity::Get.run({
         id: id,
         application_id: RestPack::Activity.config.application_id
       })
+
+      if !response.success?
+        case(response.status)
+        when :not_found
+          raise ActiveRecord::RecordNotFound
+        else
+          raise "Service Error"
+        end
+      end
+
+      response
     end
 
     def self.list(params = {})
