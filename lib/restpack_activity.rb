@@ -6,6 +6,7 @@ require "restpack_activity/configuration"
 require "restpack_activity/models/page"
 require "restpack_activity/models/activity"
 
+require "restpack_activity/proxies/base_proxy"
 require "restpack_activity/proxies/activity/api"
 require "restpack_activity/proxies/activity/local"
 

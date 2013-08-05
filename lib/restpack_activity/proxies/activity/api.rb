@@ -1,7 +1,7 @@
 require 'rest_client'
 
 module RestPack::Activity::Proxies
-  class Api
+  class Api < RestPack::BaseProxy
     def self.get(id)
       http(:get, "/api/v1/activities/#{id}.json")
     end
@@ -27,15 +27,6 @@ module RestPack::Activity::Proxies
         response = RestPack::Response.from_rest(rest_response)
         raise_exceptions_if_required(response)
         response
-      end
-    end
-
-    def self.raise_exceptions_if_required(response)
-      if !response.success?
-        case(response.status)
-        when :not_found
-          raise ActiveRecord::RecordNotFound
-        end
       end
     end
   end
