@@ -16,6 +16,11 @@ class Activity
     Activity.new(response.result)
   end
 
+  def self.destroy(id)
+    service.destroy(id)
+    true
+  end
+
   def self.list(params = {})
     response = service.list(params)
 
@@ -93,18 +98,19 @@ class Activity
 
   def attributes
     #TODO: GJ: only those that have changed
-    p "DATA: #{@data}"
-    {
+    hash = {
       id: @id,
       application_id: @application_id,
       user_id: @user_id,
       title: @title,
       content: @content,
-      latitude: @latitude,
-      longitude: @longitude,
       data: @data,
       tags: @tags.join(','),
       access: @access.join(',')
     }
+
+    hash[:latitude] = @latitude unless @latitude.blank?
+    hash[:longitude] = @longitude unless @longitude.blank?
+    hash
   end
 end

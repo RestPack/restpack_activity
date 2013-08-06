@@ -36,5 +36,15 @@ module RestPack::Activity::Proxies
       raise_exceptions_if_required(response)
       response
     end
+
+    def self.destroy(id)
+      response = RestPack::Services::Activity::Destroy.run({
+        id: id,
+        application_id: RestPack::Activity.config.application_id
+      })
+
+      raise_exceptions_if_required(response)
+      response
+    end
   end
 end

@@ -18,6 +18,10 @@ module RestPack::Activity::Proxies
       http(:put, "/api/v1/activities/#{params[:id]}.json", params)
     end
 
+    def self.destroy(id)
+      http(:delete, "/api/v1/activities/#{id}.json")
+    end
+
     private
 
     def self.http(method, path, params = {})
