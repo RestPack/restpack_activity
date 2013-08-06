@@ -1,29 +1,15 @@
-# RestpackActivity
+# restpack_activity [![Build Status](https://api.travis-ci.org/RestPack/restpack_activity.png?branch=master)](https://travis-ci.org/RestPack/restpack_activity) [![Code Climate](https://codeclimate.com/github/RestPack/restpack_activity.png)](https://codeclimate.com/github/RestPack/restpack_activity) [![Dependency Status](https://gemnasium.com/RestPack/restpack_activity.png)](https://gemnasium.com/RESTpack/restpack_activity)
 
-TODO: Write a gem description
+A client gem to the RestPack Activity service
 
-## Installation
+## Developer Environment Setup
 
-Add this line to your application's Gemfile:
+```
+bundle install
+```
 
-    gem 'restpack_activity'
+## Running Tests
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install restpack_activity
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```
+rake test
+```
