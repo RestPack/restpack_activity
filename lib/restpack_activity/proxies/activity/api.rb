@@ -28,7 +28,7 @@ module RestPack::Activity::Proxies
       params = { params: params } if method == :get
 
       RestClient.send(method, "#{RestPack::Activity.config.api_domain}#{path}", params) do |rest_response|
-        response = RestPack::Response.from_rest(rest_response)
+        response = RestPack::Service::Response.from_rest(rest_response)
         raise_exceptions_if_required(response)
         response
       end
