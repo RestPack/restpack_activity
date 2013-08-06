@@ -38,7 +38,7 @@ module RestPack::Activity::Proxies
     end
 
     def self.destroy(id)
-      response = RestPack::Services::Activity::Destroy.run({
+      response = RestPack::Services::Activity::Destry.run({
         id: id,
         application_id: RestPack::Activity.config.application_id
       })
