@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "restpack_activity_service",  "~> 0.0.4"
+  spec.add_dependency "restpack_activity_service",  "~> 0.0.8"
   spec.add_dependency "activemodel",                "~> 4.0.0"
   spec.add_dependency "activesupport",              "~> 4.0"
   spec.add_dependency "rest-client",                "~> 1.6.7"
