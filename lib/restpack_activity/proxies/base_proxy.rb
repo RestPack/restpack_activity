@@ -7,6 +7,8 @@ module RestPack
         case(response.status)
         when :not_found
           raise ActiveRecord::RecordNotFound
+        when :unauthorized
+          raise "Unauthorized RestPack request"
         end
       end
     end
