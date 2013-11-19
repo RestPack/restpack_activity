@@ -1,7 +1,7 @@
 module RestPack::Activity::Proxies
   class Local < RestPack::BaseProxy
     def self.get(id)
-      response = RestPack::Services::Activity::Get.run({
+      response = Commands::Activities::Activity::Get.run({
         id: id,
         application_id: RestPack::Activity.config.application_id
       })
@@ -11,7 +11,7 @@ module RestPack::Activity::Proxies
     end
 
     def self.list(params = {})
-      response = RestPack::Services::Activity::List.run(params, {
+      response = Commands::Activities::Activity::List.run(params, {
         application_id: RestPack::Activity.config.application_id
       })
 
@@ -20,7 +20,7 @@ module RestPack::Activity::Proxies
     end
 
     def self.create(params)
-      response = RestPack::Services::Activity::Create.run(params, {
+      response = Commands::Activities::Activity::Create.run(params, {
         application_id: RestPack::Activity.config.application_id
       })
 
@@ -29,7 +29,7 @@ module RestPack::Activity::Proxies
     end
 
     def self.update(params)
-      response = RestPack::Services::Activity::Update.run(params, {
+      response = Commands::Activities::Activity::Update.run(params, {
         application_id: RestPack::Activity.config.application_id
       })
 
@@ -38,7 +38,7 @@ module RestPack::Activity::Proxies
     end
 
     def self.destroy(id)
-      response = RestPack::Services::Activity::Destry.run({
+      response = Commands::Activities::Activity::Destry.run({
         id: id,
         application_id: RestPack::Activity.config.application_id
       })

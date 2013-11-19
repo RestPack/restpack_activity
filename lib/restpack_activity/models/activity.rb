@@ -13,7 +13,7 @@ class Activity
 
   def self.get(id)
     response = service.get(id)
-    Activity.new(response.result)
+    Activity.new(response.result[:activities].first)
   end
 
   def self.destroy(id)
@@ -75,6 +75,7 @@ class Activity
   end
 
   def update_attributes(params)
+    #TODO: GJ: extract into base class
     #TODO: whitelist updateble params
     @title = params[:title] if params[:title]
     @content = params[:content] if params[:content]
@@ -97,6 +98,7 @@ class Activity
   private
 
   def attributes
+    #TODO: GJ: extract into base class
     #TODO: GJ: only those that have changed
     hash = {
       id: @id,
@@ -104,13 +106,13 @@ class Activity
       user_id: @user_id,
       title: @title,
       content: @content,
-      data: @data,
       tags: @tags.join(','),
       access: @access.join(',')
     }
 
     hash[:latitude] = @latitude unless @latitude.blank?
     hash[:longitude] = @longitude unless @longitude.blank?
+    hash[:data] = @data unless @data.blank?
     hash
   end
 end

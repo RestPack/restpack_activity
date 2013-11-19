@@ -3,23 +3,23 @@ require 'rest_client'
 module RestPack::Activity::Proxies
   class Api < RestPack::BaseProxy
     def self.get(id)
-      http(:get, "/api/v1/activities/#{id}.json")
+      http(:get, "/api/v1/activities/#{id}")
     end
 
     def self.list(params = {})
-      http(:get, "/api/v1/activities/.json", params)
+      http(:get, "/api/v1/activities", params)
     end
 
     def self.create(params)
-      http(:post, "/api/v1/activities/.json", params)
+      http(:post, "/api/v1/activities", params)
     end
 
     def self.update(params)
-      http(:put, "/api/v1/activities/#{params[:id]}.json", params)
+      http(:put, "/api/v1/activities/#{params[:id]}", params)
     end
 
     def self.destroy(id)
-      http(:delete, "/api/v1/activities/#{id}.json")
+      http(:delete, "/api/v1/activities/#{id}")
     end
 
     private
